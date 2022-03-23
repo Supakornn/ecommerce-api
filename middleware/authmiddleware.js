@@ -1,23 +1,19 @@
-const User = require("../models/usermodel");
-const jwt = require("jsonwebtoken");
-const { UnauthenticatedError } = require("../errors");
-require("dotenv").config();
+const CustomError = require("../errors");
+const { isTokenValid } = require("../utils");
 
-const authmiddleware = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader || !authHeader.startsWith("Bearer")) {
-    throw new UnauthenticatedError("Authentication Invalid");
+const authenticateUser = async (req, res, next) => {
+  const token = req.signedCookies.token;
+  if (!token) {
+    throw new CustomError.UnauthenticatedError("Authentication Invalid");
   }
 
-  const token = authHeader.split(" ")[1];
-
   try {
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = { userId: payload.userId, username: payload.username };
+    const payload = isTokenValid({ token });
+    console.log(payload);
     next();
   } catch (error) {
-    throw new UnauthenticatedError("Authentication Invalid");
+    throw new CustomError.UnauthenticatedError("Authentication Invalid");
   }
 };
 
-module.exports = authmiddleware;
+module.exports = { authenticateUser };
