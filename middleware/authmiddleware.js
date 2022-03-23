@@ -8,12 +8,19 @@ const authenticateUser = async (req, res, next) => {
   }
 
   try {
-    const payload = isTokenValid({ token });
-    console.log(payload);
+    const { username, userId, role } = isTokenValid({ token });
+    req.user = { username, userId, role };
     next();
   } catch (error) {
     throw new CustomError.UnauthenticatedError("Authentication Invalid");
   }
 };
 
-module.exports = { authenticateUser };
+const authorizePermissions = (req, res, next) => {
+  if (req.user.role !== "admin") {
+    throw new CustomError.UnauthorizedError("UnauthorizedError to access this route");
+  }
+  next();
+};
+
+module.exports = { authenticateUser, authorizePermissions };
