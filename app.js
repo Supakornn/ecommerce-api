@@ -16,6 +16,7 @@ const connectDB = require("./db/connect");
 // routers
 const authRouter = require("./routes/authRoute");
 const userRouter = require("./routes/userRoute");
+
 // middleware
 const notfound = require("./middleware/notfound");
 const errorhandler = require("./middleware/errorhandler");
@@ -28,7 +29,7 @@ app.use(cors());
 // app.use(express.static());
 
 app.use("/api/auth", authRouter);
-app.use("/api/user", userRouter);
+app.use("/api/users", userRouter);
 
 app.use(notfound);
 app.use(errorhandler);

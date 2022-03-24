@@ -3,36 +3,28 @@
     "name": "padthai",
     "price": 60,
     "image": "",
-    "colors": ["#ff0000", "#00ff00", "#0000ff"],
-    "company": "padao",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
-    "category": "dry"
+    "category": "1"
   },
   {
     "name": "somtum",
     "price": 45,
     "image": "",
-    "colors": ["#000", "#ffb900"],
-    "company": "padao",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
-    "category": "wet"
+    "category": "2"
   },
   {
     "name": "tomyumkung",
     "price": 150,
     "image": "",
-    "colors": ["#000", "#00ff00", "#0000ff"],
-    "company": "padao",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
-    "category": "curry"
+    "category": "3"
   },
   {
     "name": "kaiyang",
     "price": 40,
     "image": "",
-    "colors": ["#0000ff", "#000"],
-    "company": "padao",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim",
-    "category": "chicken"
+    "category": "1"
   }
 ]

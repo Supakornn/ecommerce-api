@@ -1,7 +1,6 @@
 [
   {
     "tax": 10,
-    "shippingFee": 10,
     "items": [
       {
         "name": "padthai",
@@ -14,7 +13,6 @@
   },
   {
     "tax": 15,
-    "shippingFee": 15,
     "items": [
       {
         "name": "somtum",
