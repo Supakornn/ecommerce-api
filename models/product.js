@@ -38,7 +38,7 @@ const ProductSchema = new mongoose.Schema(
       default: 0
     },
     user: {
-      type: moongoose.Types.objectId,
+      type: mongoose.Types.ObjectId,
       ref: "User",
       required: true
     }
