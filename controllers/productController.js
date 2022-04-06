@@ -1,7 +1,8 @@
-const Product = require("../models/product.js");
+const Product = require("../models/Product");
 const { StatusCodes } = require("http-status-codes");
 const CustomError = require("../errors");
-
+const path = require("path");
+const { log } = require("console");
 const createProduct = async (req, res) => {
   req.body.user = req.user.userId;
   const product = await Product.create(req.body);
@@ -16,7 +17,7 @@ const getAllProduct = async (req, res) => {
 const getOneProduct = async (req, res) => {
   const { id: productId } = req.params;
   console.log(req.params);
-  const product = await Product.find({ _id: productId });
+  const product = await Product.find({ _id: productId }).populate("reviews");
   if (!product) {
     throw new CustomError.NotFoundError(`No product found with id ${productId}`);
   }
@@ -57,10 +58,9 @@ const uploadImage = async (req, res) => {
   if (productImg.size > maxSize) {
     throw new CustomError.BadRequestError("Image size too large");
   }
-  const imgPath = path.join(__dirname, "../public/uploads" + `${productImg.name}`);
+  const imgPath = path.join(__dirname, "../public/uploads/" + productImg.name);
   await productImg.mv(imgPath);
-  console.log(productImg);
-  res.send("upload product");
+  res.status(StatusCodes.OK).json({ img: `/uploads/${productImg.name}` });
 };
 
 module.exports = {
