@@ -15,9 +15,7 @@ const {
 
 const { getOneProductReviews } = require("../controllers/reviewController");
 
-router
-  .route("/")
-  .get([authenticateUser, authorizePermissions("admin")], getAllProduct);
+router.route("/").get([authenticateUser, authorizePermissions("admin")], getAllProduct);
 router
   .route("/create")
   .post([authenticateUser, authorizePermissions("admin")], createProduct);
