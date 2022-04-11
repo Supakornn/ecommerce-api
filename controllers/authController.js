@@ -2,6 +2,7 @@ const User = require("../models/User");
 const { StatusCodes } = require("http-status-codes");
 const CustomError = require("../errors/");
 const { attachCookies, createTokenUser } = require("../utils");
+const crypto = require("crypto");
 
 // register
 const register = async (req, res) => {
@@ -12,10 +13,17 @@ const register = async (req, res) => {
   }
   const isFirstAccount = (await User.countDocuments({})) === 0;
   const role = isFirstAccount ? "admin" : "user";
-  const user = await User.create({ email, username, password, role });
-  const tokenUser = createTokenUser(user);
-  attachCookies({ res, user: tokenUser });
-  res.status(StatusCodes.CREATED).json({ user: tokenUser });
+  const verificationToken = crypto.randomBytes(40).toString("hex");
+  const user = await User.create({ email, username, password, role, verificationToken });
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: "Success Please check your email for verify", verificationToken });
+};
+
+//verifyEmail
+const verifyEmail = async (req, res) => {
+  const { verificationToken, email } = req.body;
+  res.status(StatusCodes.OK).json({ verificationToken, email });
 };
 
 // login
@@ -31,6 +39,9 @@ const login = async (req, res) => {
   const isPasswordCorrect = await user.comparePassword(password);
   if (!isPasswordCorrect) {
     throw new CustomError.UnauthenticatedError("Password is not correct");
+  }
+  if (!user.isVerifiled) {
+    throw new CustomError.UnauthenticatedError("Email is not verified");
   }
   const tokenUser = createTokenUser(user);
   attachCookies({ res, user: tokenUser });
@@ -49,5 +60,6 @@ const logout = async (req, res) => {
 module.exports = {
   register,
   login,
-  logout
+  logout,
+  verifyEmail
 };
