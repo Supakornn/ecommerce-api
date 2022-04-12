@@ -29,7 +29,7 @@ const UserSchema = new mongoose.Schema({
     default: "user"
   },
   verificationToken: String,
-  ifVerified: {
+  isVerifiled: {
     type: Boolean,
     defualt: false
   },
