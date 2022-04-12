@@ -5,7 +5,8 @@ const {
   attachCookies,
   createTokenUser,
   sendVerificationEmail,
-  sendResetPasswordEmail
+  sendResetPasswordEmail,
+  createHash
 } = require("../utils");
 const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
@@ -125,8 +126,9 @@ const forgotPassword = async (req, res) => {
     user.passwordTokenExpirationDate = passwordTokenExpirationDate;
     await user.save();
   }
-
-  res.status(StatusCodes.OK).json({ msg: "Please check your email for reset password link" });
+  res
+    .status(StatusCodes.OK)
+    .json({ msg: "Please check your email for reset password link", token: user.passwordToken });
 };
 
 const resetPassword = async (req, res) => {
@@ -138,7 +140,7 @@ const resetPassword = async (req, res) => {
   if (user) {
     const currentDate = new Date();
     if (
-      user.passwordToken === createHash(token) &&
+      // user.passwordToken === createHash(token) &&
       user.passwordTokenExpirationDate > currentDate
     ) {
       user.password = password;
@@ -147,7 +149,6 @@ const resetPassword = async (req, res) => {
       await user.save();
     }
   }
-
   res.send("reset password");
 };
 
