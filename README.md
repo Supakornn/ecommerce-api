@@ -45,7 +45,7 @@
 - Clone repo
 
 ```
-git clone https://github.com/H3X-T/ecommerce-api/
+git clone https://github.com/H3XxT/ecommerce-api/
 ```
 
 - Install package
