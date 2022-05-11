@@ -75,6 +75,7 @@ npm run dev || yarn run dewv
 
 ---
 
-> GitHub [@H3X-T](https://github.com/H3X-T) &nbsp;&middot;&nbsp;
-> Twitter [@H3xtT](https://twitter.com/H3xtT) &nbsp;&middot;&nbsp;
+
+> GitHub [@H3XxT](https://github.com/H3XxT) &nbsp;&middot;&nbsp;
+> Twitter [@H3XxT_](https://twitter.com/H3XxT_) &nbsp;&middot;&nbsp;
 > Instagram [@supakornigm](https://instagram.com/supakornigm)
