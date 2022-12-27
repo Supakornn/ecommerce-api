@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/H3X-T/ecommerce-api#readme",
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.20"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
