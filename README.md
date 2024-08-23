@@ -4,7 +4,7 @@ git clone https://github.com/H3XxT/ecommerce-api/
 npm install || yarn install
 ```
 
--env
+- ENV
 ```
 PORT=
 DBURL=
